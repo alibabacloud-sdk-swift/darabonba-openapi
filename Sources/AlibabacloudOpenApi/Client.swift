@@ -799,7 +799,7 @@ open class Client {
                 if (!TeaUtils.Client.isUnset(request.stream)) {
                     var tmp: [UInt8] = try await TeaUtils.Client.readAsBytes(request.stream)
                     hashedRequestPayload = AlibabaCloudOpenApiUtil.Client.hexEncode(AlibabaCloudOpenApiUtil.Client.hash(tmp, signatureAlgorithm))
-                    _request.body = Tea.TeaCore.toReadable(tmp as! [UInt8])
+                    _request.body = request.stream
                     _request.headers["content-type"] = "application/octet-stream";
                 }
                 else {
